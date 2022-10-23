@@ -4,7 +4,8 @@ https://docs.uniswap.org/protocol/V2/reference/smart-contracts/factory
 
 from web3 import Web3
 
-CONTRACT_ADDRESS = '0x9014B937069918bd319f80e8B3BB4A2cf6FAA5F7'
+CONTRACT_ADDRESS_Serendale = '0x9014B937069918bd319f80e8B3BB4A2cf6FAA5F7'
+CONTRACT_ADDRESS_Crystalvale = '0x794C07912474351b3134E6D6B3B7b3b4A07cbAAa'
 
 ABI = """
     [
@@ -23,17 +24,17 @@ ABI = """
     """
 
 
-def all_pairs_length(rpc_address):
+def all_pairs_length_Serendale(rpc_address):
 
     w3 = Web3(Web3.HTTPProvider(rpc_address))
 
-    contract_address = Web3.toChecksumAddress(CONTRACT_ADDRESS)
+    contract_address = Web3.toChecksumAddress(CONTRACT_ADDRESS_Serendale)
     contract = w3.eth.contract(contract_address, abi=ABI)
 
     return contract.functions.allPairsLength().call()
 
 
-def all_pairs(index, rpc_address):
+def all_pairs_Serendale(index, rpc_address):
     '''
     Return the address of the liquidity pair at index
     :param index:
@@ -42,16 +43,49 @@ def all_pairs(index, rpc_address):
     '''
     w3 = Web3(Web3.HTTPProvider(rpc_address))
 
-    contract_address = Web3.toChecksumAddress(CONTRACT_ADDRESS)
+    contract_address = Web3.toChecksumAddress(CONTRACT_ADDRESS_Serendale)
     contract = w3.eth.contract(contract_address, abi=ABI)
 
     return contract.functions.allPairs(index).call()
 
 
-def get_pair(token_address_1, token_address_2, rpc_address):
+def get_pair_Serendale(token_address_1, token_address_2, rpc_address):
     w3 = Web3(Web3.HTTPProvider(rpc_address))
 
-    contract_address = Web3.toChecksumAddress(CONTRACT_ADDRESS)
+    contract_address = Web3.toChecksumAddress(CONTRACT_ADDRESS_Serendale)
+    contract = w3.eth.contract(contract_address, abi=ABI)
+
+    return contract.functions.getPair(token_address_1, token_address_2).call()
+
+def all_pairs_length_Crystalvale(rpc_address):
+
+    w3 = Web3(Web3.HTTPProvider(rpc_address))
+
+    contract_address = Web3.toChecksumAddress(CONTRACT_ADDRESS_Crystalvale)
+    contract = w3.eth.contract(contract_address, abi=ABI)
+
+    return contract.functions.allPairsLength().call()
+
+
+def all_pairs_Crystalvale(index, rpc_address):
+    '''
+    Return the address of the liquidity pair at index
+    :param index:
+    :param rpc_address:
+    :return:
+    '''
+    w3 = Web3(Web3.HTTPProvider(rpc_address))
+
+    contract_address = Web3.toChecksumAddress(CONTRACT_ADDRESS_Crystalvale)
+    contract = w3.eth.contract(contract_address, abi=ABI)
+
+    return contract.functions.allPairs(index).call()
+
+
+def get_pair_Crystalvale(token_address_1, token_address_2, rpc_address):
+    w3 = Web3(Web3.HTTPProvider(rpc_address))
+
+    contract_address = Web3.toChecksumAddress(CONTRACT_ADDRESS_Crystalvale)
     contract = w3.eth.contract(contract_address, abi=ABI)
 
     return contract.functions.getPair(token_address_1, token_address_2).call()
